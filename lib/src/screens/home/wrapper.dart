@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:mad3_submission_1/src/screens/home/home_screen.dart';
 
 import '../../routes/router.dart';

@@ -3,6 +3,7 @@ import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 
 import '../screens/account_screen.dart';
+import '../screens/auth/login_screen.dart';
 import '../screens/counter_screen.dart';
 import '../screens/home/home_screen.dart';
 import '../screens/home/wrapper.dart';
@@ -26,11 +27,18 @@ class GlobalRouter {
 
     router = GoRouter(
       navigatorKey: _rootNavigatorKey,
-      initialLocation: HomeScreen.route,
+      initialLocation: LoginScreen.route,
       redirect: (context, state) {
         return null;
       },
       routes: [
+        GoRoute(
+            parentNavigatorKey: _rootNavigatorKey,
+            path: LoginScreen.route,
+            name: LoginScreen.name,
+            builder: (context, _) {
+              return const LoginScreen();
+            }),
         ShellRoute(
           navigatorKey: _shellNavigatorKey,
           routes: [
@@ -42,13 +50,12 @@ class GlobalRouter {
                   return const HomeScreen();
                 }),
             GoRoute(
-              parentNavigatorKey: _shellNavigatorKey,
-              path: "/account",
-              name: "Wrapped Account",
-              builder: (context, _) {
-                return const AccountScreen();
-              },
-            ),
+                parentNavigatorKey: _shellNavigatorKey,
+                path: "/account",
+                name: "Wrapped Account",
+                builder: (context, _) {
+                  return const AccountScreen();
+                }),
           ],
           builder: (context, state, child) {
             return HomeWrapper(
