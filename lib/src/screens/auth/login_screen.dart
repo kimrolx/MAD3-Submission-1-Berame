@@ -7,6 +7,7 @@ import '../../constants/colors.dart';
 import '../../constants/components/custom_elevated_button.dart';
 import '../../constants/components/custom_text_form_field.dart';
 import '../../constants/text.dart';
+import '../../controllers/auth_controller.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String route = "/auth";
@@ -113,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                             ]).call,
                             obscureText: true,
-                            keyboardType: TextInputType.text,
+                            keyboardType: TextInputType.visiblePassword,
                             onEditingComplete: () {
                               //TODO: Call Submit
                               passwordFn.unfocus();
@@ -173,7 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   onSubmit() {
     if (formKey.currentState?.validate() ?? false) {
-      //TODO: Do something here.
+      AuthController.I.login(username.text.trim(), password.text.trim());
     }
   }
 }

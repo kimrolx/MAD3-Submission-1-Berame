@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'src/controllers/auth_controller.dart';
 import 'src/routes/router.dart';
 
 void main() {
+  AuthController.initialize();
   GlobalRouter.initialize();
-
   runApp(const MainApp());
 }
 
