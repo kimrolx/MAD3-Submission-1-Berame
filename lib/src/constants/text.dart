@@ -18,17 +18,24 @@ class AppTextStyles {
     ),
   );
 
+  static final TextStyle greyTextStyle = GoogleFonts.poppins(
+    textStyle: const TextStyle(
+      fontSize: 15.0,
+      color: gray,
+    ),
+  );
+
   static final TextStyle inputStyle = GoogleFonts.poppins(
     textStyle: const TextStyle(
-      fontSize: 14.0,
+      fontSize: 15.0,
       color: black,
     ),
   );
 
   static final TextStyle inputLabelStyle = GoogleFonts.poppins(
     textStyle: const TextStyle(
-      fontSize: 14.0,
-      color: labelColor,
+      fontSize: 15.0,
+      color: gray,
     ),
   );
 }
