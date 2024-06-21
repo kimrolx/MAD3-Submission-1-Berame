@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../controllers/auth_controller.dart';
+import '../../dialogs/waiting_dialog.dart';
 import '../../routes/router.dart';
-import 'counter_screen.dart';
+import 'home/home_screen.dart';
 
 class AccountScreen extends StatelessWidget {
   static const String route = '/';
@@ -18,14 +20,26 @@ class AccountScreen extends StatelessWidget {
           children: [
             const Text("Account Screen"),
             ElevatedButton(
-              onPressed: () {
-                GlobalRouter.I.router.push(CounterScreen.path);
-              },
-              child: const Text("Go to Counter Screen"),
+              onPressed: () => _handleLogout(context),
+              child: const Text("Log out"),
             ),
           ],
         ),
       ),
     );
+  }
+
+  void _handleLogout(BuildContext context) {
+    WaitingDialog.show(
+      context,
+      future: AuthController.I.logout(),
+      prompt: "Logging out...",
+    ).then((_) {
+      GlobalRouter.I.router.push(HomeScreen.path);
+    }).catchError((error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Logout failed: $error')),
+      );
+    });
   }
 }

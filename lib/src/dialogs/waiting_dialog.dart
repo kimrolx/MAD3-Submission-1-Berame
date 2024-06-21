@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-import '../services/information_service.dart';
+import '../shared/services/information_service.dart';
 
 class WaitingDialog extends StatelessWidget {
   static Future<T?> show<T>(BuildContext context,
@@ -57,7 +57,7 @@ class WaitingDialog extends StatelessWidget {
               height: 16,
             ),
             Text(
-              prompt ?? "Please wait . . .",
+              prompt ?? "Please wait...",
               style: TextStyle(color: color ?? Colors.white),
             )
           ],

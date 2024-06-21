@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:mad3_submission_1/src/shared/utils/localstorage_util.dart';
 
 import '../enum/enum.dart';
 
@@ -9,27 +10,46 @@ class AuthController with ChangeNotifier {
   }
 
   static AuthController get instance => GetIt.instance<AuthController>();
-
   static AuthController get I => GetIt.instance<AuthController>();
 
   AuthState state = AuthState.unauthenticated;
   SimulatedAPI api = SimulatedAPI();
 
+  AuthController() {
+    loadSession();
+  }
+
+  //* Log in
   login(String userName, String password) async {
     bool isLoggedIn = await api.login(userName, password);
     if (isLoggedIn) {
+      await LocalStorage().saveSession(userName);
       state = AuthState.authenticated;
-      //TODO: Store Session
       notifyListeners();
+      print("Login status: $isLoggedIn. Current State: $state");
     }
   }
 
-  //* Logout
-  logout() {
-    //TODO: Clear Session
+  //* Log out
+  Future<void> logout() async {
+    await Future.delayed(const Duration(seconds: 2));
+    state = AuthState.unauthenticated;
+    notifyListeners();
+    await LocalStorage().clearSession();
+    print("Logged out...");
+    print("Session cleared, state reset to unauthenticated");
   }
 
-  loadSession() async {}
+  //* Load Session
+  Future<void> loadSession() async {
+    String? userName = await LocalStorage().loadSession();
+    if (userName != null) {
+      state = AuthState.authenticated;
+    } else {
+      state = AuthState.unauthenticated;
+    }
+    notifyListeners();
+  }
 }
 
 class SimulatedAPI {

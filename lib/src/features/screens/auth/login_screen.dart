@@ -112,8 +112,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               keyboardType: TextInputType.visiblePassword,
                               errorMaxLines: 3,
                               onEditingComplete: () {
-                                //TODO: Call Submit
                                 passwordFn.unfocus();
+                                onSubmit();
                               },
                               suffixIcon: IconButton(
                                   onPressed: () {
