@@ -4,11 +4,11 @@ import 'package:go_router/go_router.dart';
 
 import '../controllers/auth_controller.dart';
 import '../enum/enum.dart';
-import '../screens/account_screen.dart';
-import '../screens/auth/login_screen.dart';
-import '../screens/counter_screen.dart';
-import '../screens/home/home_screen.dart';
-import '../screens/home/wrapper.dart';
+import '../features/screens/account_screen.dart';
+import '../features/screens/auth/login_screen.dart';
+import '../features/screens/counter_screen.dart';
+import '../features/screens/home/home_screen.dart';
+import '../features/screens/home/wrapper.dart';
 
 class GlobalRouter {
   static void initialize() {
@@ -51,29 +51,32 @@ class GlobalRouter {
       refreshListenable: AuthController.I,
       routes: [
         GoRoute(
-            parentNavigatorKey: _rootNavigatorKey,
-            path: LoginScreen.route,
-            name: LoginScreen.name,
-            builder: (context, _) {
-              return const LoginScreen();
-            }),
+          parentNavigatorKey: _rootNavigatorKey,
+          path: LoginScreen.route,
+          name: LoginScreen.name,
+          builder: (context, _) {
+            return const LoginScreen();
+          },
+        ),
         ShellRoute(
           navigatorKey: _shellNavigatorKey,
           routes: [
             GoRoute(
-                parentNavigatorKey: _shellNavigatorKey,
-                path: HomeScreen.route,
-                name: HomeScreen.name,
-                builder: (context, _) {
-                  return const HomeScreen();
-                }),
+              parentNavigatorKey: _shellNavigatorKey,
+              path: HomeScreen.route,
+              name: HomeScreen.name,
+              builder: (context, _) {
+                return const HomeScreen();
+              },
+            ),
             GoRoute(
-                parentNavigatorKey: _shellNavigatorKey,
-                path: "/account",
-                name: "Wrapped Account",
-                builder: (context, _) {
-                  return const AccountScreen();
-                }),
+              parentNavigatorKey: _shellNavigatorKey,
+              path: "/account",
+              name: "Wrapped Account",
+              builder: (context, _) {
+                return const AccountScreen();
+              },
+            ),
           ],
           builder: (context, state, child) {
             return HomeWrapper(
@@ -82,21 +85,23 @@ class GlobalRouter {
           },
         ),
         GoRoute(
-            parentNavigatorKey: _rootNavigatorKey,
-            path: AccountScreen.route,
-            name: AccountScreen.name,
-            builder: (context, _) {
-              return const AccountScreen();
-            },
-            routes: [
-              GoRoute(
-                  parentNavigatorKey: _rootNavigatorKey,
-                  path: CounterScreen.route,
-                  name: CounterScreen.name,
-                  builder: (context, _) {
-                    return const CounterScreen();
-                  }),
-            ]),
+          parentNavigatorKey: _rootNavigatorKey,
+          path: AccountScreen.route,
+          name: AccountScreen.name,
+          builder: (context, _) {
+            return const AccountScreen();
+          },
+          routes: [
+            GoRoute(
+              parentNavigatorKey: _rootNavigatorKey,
+              path: CounterScreen.route,
+              name: CounterScreen.name,
+              builder: (context, _) {
+                return const CounterScreen();
+              },
+            ),
+          ],
+        ),
       ],
     );
   }

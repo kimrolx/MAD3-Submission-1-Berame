@@ -6,7 +6,7 @@ class AppTextStyles {
   static final TextStyle header = GoogleFonts.sriracha(
     textStyle: const TextStyle(
       fontSize: 50.0,
-      color: primaryTextColor,
+      color: green,
     ),
   );
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../routes/router.dart';
+import '../../routes/router.dart';
 import 'counter_screen.dart';
 
 class AccountScreen extends StatelessWidget {

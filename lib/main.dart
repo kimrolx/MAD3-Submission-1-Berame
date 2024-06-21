@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'src/controllers/auth_controller.dart';
 import 'src/routes/router.dart';
 
-void main() {
+void main() async {
   AuthController.initialize();
   GlobalRouter.initialize();
+  await AuthController.I.loadSession();
   runApp(const MainApp());
 }
 

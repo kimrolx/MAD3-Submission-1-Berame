@@ -19,9 +19,17 @@ class AuthController with ChangeNotifier {
     bool isLoggedIn = await api.login(userName, password);
     if (isLoggedIn) {
       state = AuthState.authenticated;
+      //TODO: Store Session
       notifyListeners();
     }
   }
+
+  //* Logout
+  logout() {
+    //TODO: Clear Session
+  }
+
+  loadSession() async {}
 }
 
 class SimulatedAPI {
@@ -30,6 +38,7 @@ class SimulatedAPI {
   Future<bool> login(String userName, String password) async {
     await Future.delayed(const Duration(seconds: 4));
     if (users[userName] == null) throw Exception("User does not exist");
+    if (users[userName] != password) throw Exception("password does not match");
     return users[userName] == password;
   }
 }
