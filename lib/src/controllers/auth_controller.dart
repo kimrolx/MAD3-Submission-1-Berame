@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mad3_submission_1/src/shared/utils/localstorage_util.dart';
 
 import '../enum/enum.dart';
+import '../shared/utils/localstorage_util.dart';
 
 class AuthController with ChangeNotifier {
   static void initialize() {

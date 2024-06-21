@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mad3_submission_1/src/constants/text.dart';
+
+import '../../constants/text.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final String labelText;

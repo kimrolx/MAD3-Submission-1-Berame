@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mad3_submission_1/src/constants/colors.dart';
+
+import 'colors.dart';
 
 class AppTextStyles {
   static final TextStyle header = GoogleFonts.sriracha(
